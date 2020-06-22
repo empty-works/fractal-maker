@@ -2,6 +2,7 @@
 #define BITMAPFILEHEADER_H_
 
 #include <cstdint>
+#pragma pack(2)
 
 struct BitmapFileHeader {
 	char header[2] {'B', 'M'};
