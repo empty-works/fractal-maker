@@ -2,11 +2,12 @@
 #define BITMAP_H_
 
 #include <string>
+#include <memory>
 
 class Bitmap {
 	int m_width{0};
 	int m_height{0};
-	unique_ptr<uint8_t[]> m_pPixel{nullptr};
+	std::unique_ptr<uint8_t[]> m_pPixels{nullptr};
 
 	public:
 	Bitmap(int width, int height);
