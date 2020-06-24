@@ -22,6 +22,12 @@ bool Bitmap::write(std::string filename) {
 
 	std::ofstream file;
 	file.open(filename, std::ios::out | std::ios::binary);
+	if(!file) {
+		std::cout << "Error opening file." << std::endl;
+		return false;
+	}
+
+	file.close();
 	
 	return false;	
 }
