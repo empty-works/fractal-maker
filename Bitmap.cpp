@@ -26,6 +26,9 @@ bool Bitmap::write(std::string filename) {
 		std::cout << "Error opening file." << std::endl;
 		return false;
 	}
+	file.write((char *)&fileHeader, sizeof(fileHeader));
+	file.write((char *)&infoHeader, sizeof(infoHeader));
+	file.write((char *)m_pPixels.get(), m_width * m_height * 3);
 
 	file.close();
 	

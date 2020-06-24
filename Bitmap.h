@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 
 class Bitmap {
 	int m_width{0};
