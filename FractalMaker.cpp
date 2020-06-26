@@ -2,7 +2,11 @@
 #include "Bitmap.h"
 
 int main() {
-	Bitmap bitmap(800, 600);
+	int const WIDTH = 800;
+	int const HEIGHT = 600;
+
+	Bitmap bitmap(WIDTH, HEIGHT);
+
 
 	bitmap.write("test.bmp");
 

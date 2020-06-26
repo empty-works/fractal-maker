@@ -8,7 +8,13 @@ Bitmap::Bitmap(int width, int height): m_width(width), m_height(height), m_pPixe
 }	
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
-	
+	uint8_t *pPixel = m_pPixels.get(); // Memory block that represents the whole screen.
+	pPixel += (y * 3) * m_width + (x * 3); // y * m_width is if every pixel is 1 byte times 3  in all rows (y) before the one we're interested in.	
+				   // Then move it forward by x number of columns until pixel (pPixel) we want.
+	// In reverse order because it is in little endian format.
+	pPixel[0] = blue;
+	pPixel[1] = green;
+	pPixel[2] = red;
 }
 
 bool Bitmap::write(std::string filename) {
