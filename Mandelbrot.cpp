@@ -10,8 +10,8 @@ Mandelbrot::~Mandelbrot() {
 }
 
 int Mandelbrot::getIterations(double x, double y) {
-	complex<double> z = 0;
-	complex<double> c(x, y);
+	std::complex<double> z = 0;
+	std::complex<double> c(x, y);
 	
 	int iterations = 0;
 

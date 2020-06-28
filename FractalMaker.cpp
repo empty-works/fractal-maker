@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include "Mandelbrot.h"
 #include "Bitmap.h"
 
 int main() {
@@ -16,8 +17,8 @@ int main() {
 			double xFractal {(x - WIDTH / 2) * 2.0 / WIDTH};
 			double yFractal {(y - WIDTH / 2) * 2.0 / WIDTH};
 
-			int iterations = Mandelbrot::getIteratins(xFractal, yFractal);
-			uint8_t red = (unint8_t)(256 * (double)iterations/Mandelbrot::MAX_ITERATIONS);
+			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			uint8_t red = (uint8_t)(256 * (double)iterations/Mandelbrot::MAX_ITERATIONS);
 
 			if(red < min) min = red;		
 			if(red < max) max = red;		
