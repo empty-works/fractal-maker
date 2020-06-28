@@ -3,6 +3,9 @@
 
 class Mandelbrot {
 public:
+	static const int MAX_ITERATIONS = 1000; // The more iterations the better the quality of the image. Will take longer though.
+
+public:
 	Mandelbrot();
 	virtual ~Mandelbrot();
 
