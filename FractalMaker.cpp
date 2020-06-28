@@ -12,8 +12,8 @@ int main() {
 
 	for(int y {0}; y < HEIGHT; y++) {
 		for(int x {0}; x < WIDTH; x++) {
-			double xFractal {0};
-			double yFractal {0};
+			double xFractal {(x - WIDTH / 2) * 2.0 / WIDTH};
+			double yFractal {(y - WIDTH / 2) * 2.0 / WIDTH};
 
 			if(xFractal < min) min = xFractal;		
 			if(xFractal < max) max = xFractal;		
