@@ -33,6 +33,14 @@ int main() {
 			if(color > max) max = color;		
 		}
 	}
+
+	std::cout << std::endl;
+	int count = 0;
+	for(int i {0}; i <= Mandelbrot::MAX_ITERATIONS; i++) {
+		std::cout << histogram[i] << " " << std::flush;
+		count += histogram[i];
+	}
+	std::cout << "; " << WIDTH * HEIGHT << std::endl;
 	
 	std::cout << min << ", " << max << std::endl;
 
