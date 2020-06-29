@@ -14,7 +14,7 @@ int main() {
 
 	for(int y {0}; y < HEIGHT; y++) {
 		for(int x {0}; x < WIDTH; x++) {
-			double xFractal {(x - WIDTH / 2) * 2.0 / WIDTH};
+			double xFractal {(x - WIDTH / 2 - 200) * 2.0 / WIDTH};
 			double yFractal {(y - WIDTH / 2) * 2.0 / WIDTH};
 
 			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
@@ -23,7 +23,7 @@ int main() {
 			bitmap.setPixel(x, y, red, red, red);
 
 			if(red < min) min = red;		
-			if(red < max) max = red;		
+			if(red > max) max = red;		
 		}
 	}
 	
