@@ -8,7 +8,8 @@ int main() {
 	int const WIDTH = 800;
 	int const HEIGHT = 600;
 
-	std::unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{});
+	std::unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
+	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
 
 	Bitmap bitmap(WIDTH, HEIGHT);
 
@@ -21,6 +22,8 @@ int main() {
 			double yFractal {(y - HEIGHT / 2) * 2.0 / HEIGHT};
 
 			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+
+			fractal[y * WIDTH + x] = iterations;
 
 			if(iterations != Mandelbrot::MAX_ITERATIONS) {
 				histogram[iterations]++;
@@ -35,16 +38,6 @@ int main() {
 			if(color > max) max = color;		
 		}
 	}
-
-	std::cout << std::endl;
-	int count = 0;
-	for(int i {0}; i < Mandelbrot::MAX_ITERATIONS; i++) {
-		std::cout << histogram[i] << " " << std::flush;
-		count += histogram[i];
-	}
-	std::cout << "; " << WIDTH * HEIGHT << std::endl;
-	
-	std::cout << min << ", " << max << std::endl;
 
 	bitmap.write("test.bmp");
 

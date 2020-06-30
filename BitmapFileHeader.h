@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #pragma pack(2)
-g
+
 struct BitmapFileHeader {
 	char header[2] {'B', 'M'};
 	int32_t fileSize;
