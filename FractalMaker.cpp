@@ -39,6 +39,11 @@ int main() {
 		}
 	}
 
+	int total {0};
+	for(size_t i {0}; i < Mandelbrot::MAX_ITERATIONS; i++) {
+		total += histogram[i];
+	}
+
 	bitmap.write("test.bmp");
 
 	std::cout << "Finished." << std::endl;
