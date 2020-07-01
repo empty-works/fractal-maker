@@ -42,6 +42,11 @@ int main() {
 			int iterations = fractal[y * WIDTH + x];
 			uint8_t color = (uint8_t)(256 * (double)iterations/Mandelbrot::MAX_ITERATIONS);
 
+			double hue {0.0};
+			for(size_t i {0}; i <= iterations; i++) {
+				hue += ((double)histogram[i]) / total;
+			}
+
 			color = color * color * color;
 			bitmap.setPixel(x, y, 0, color, 0);
 
