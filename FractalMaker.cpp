@@ -4,6 +4,7 @@
 #include "Mandelbrot.h"
 #include <memory>
 #include "Bitmap.h"
+#include "ZoomList.h"
 
 int main() {
 	int const WIDTH = 800;
