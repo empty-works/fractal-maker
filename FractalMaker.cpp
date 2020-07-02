@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include <math.h>
 #include "Mandelbrot.h"
 #include <memory>
 #include "Bitmap.h"
@@ -47,7 +48,7 @@ int main() {
 			}
 
 			uint8_t red = 0;
-			uint8_t green = hue * 255;
+			uint8_t green = std::pow(255, hue); 
 			uint8_t blue = 0;
 
 			bitmap.setPixel(x, y, red, green, blue);
