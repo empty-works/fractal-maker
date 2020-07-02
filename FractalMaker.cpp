@@ -40,16 +40,21 @@ int main() {
 
 	for(size_t y {0}; y < HEIGHT; y++) {
 		for(size_t x {0}; x < WIDTH; x++) {
+			uint8_t red = 0;
+			uint8_t green = 0; 
+			uint8_t blue = 0;
+
 			int iterations = fractal[y * WIDTH + x];
 
-			double hue {0.0};
-			for(size_t i {0}; i <= iterations; i++) {
-				hue += ((double)histogram[i]) / total;
-			}
+			if(iterations != Mandelbrot::MAX_ITERATIONS) {
+			
+				double hue {0.0};
+				for(size_t i {0}; i <= iterations; i++) {
+					hue += ((double)histogram[i]) / total;
+				}
 
-			uint8_t red = 0;
-			uint8_t green = std::pow(255, hue); 
-			uint8_t blue = 0;
+				green = std::pow(255, hue); 
+			}
 
 			bitmap.setPixel(x, y, red, green, blue);
 		}
