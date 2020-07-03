@@ -19,14 +19,12 @@ int main() {
 	double max {-999999};
 
 	ZoomList zoomList(WIDTH, HEIGHT);
-	zoomList.add(Zoom(WIDTH / 2, HEIGHT / 2, 1));	
+	zoomList.add(Zoom(WIDTH / 2, HEIGHT / 2, 4.0 / WIDTH));	
 
 	for(int y {0}; y < HEIGHT; y++) {
 		for(int x {0}; x < WIDTH; x++) {
-			double xFractal {(x - WIDTH / 2 - 200) * 2.0 / HEIGHT};
-			double yFractal {(y - HEIGHT / 2) * 2.0 / HEIGHT};
-
-			int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+			std::pair<double, double> coords = zoomList.doZoom(x, y);
+			int iterations = Mandelbrot::getIterations(coords.first, coords.second);
 
 			fractal[y * WIDTH + x] = iterations;
 
