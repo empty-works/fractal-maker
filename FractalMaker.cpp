@@ -18,6 +18,9 @@ int main() {
 	double min {999999};
 	double max {-999999};
 
+	ZoomList zoomList(WIDTH, HEIGHT);
+	zoomList.add(Zoom(WIDTH / 2, HEIGHT / 2, 1));	
+
 	for(int y {0}; y < HEIGHT; y++) {
 		for(int x {0}; x < WIDTH; x++) {
 			double xFractal {(x - WIDTH / 2 - 200) * 2.0 / HEIGHT};
@@ -30,7 +33,6 @@ int main() {
 			if(iterations != Mandelbrot::MAX_ITERATIONS) {
 				histogram[iterations]++;
 			}	
-
 		}
 	}
 

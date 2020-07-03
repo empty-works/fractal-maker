@@ -9,7 +9,7 @@ class ZoomList {
 private:
 	double m_xCenter{0};
 	double m_yCenter{0};
-	double m_scale{0};
+	double m_scale{1.0};
 
 	int m_width {0};
 	int m_height {0};
