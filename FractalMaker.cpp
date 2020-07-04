@@ -5,65 +5,63 @@
 #include <memory>
 #include "Bitmap.h"
 #include "ZoomList.h"
+#include "FractalCreator.h"
 
 int main() {
-	int const WIDTH = 800;
-	int const HEIGHT = 600;
+	int const m_width = 800;
+	int const m_height = 600;
 
-	Bitmap bitmap(WIDTH, HEIGHT);
+	FractalCreator fractalCreator(800, 600);
 
-	double min {999999};
-	double max {-999999};
+	Bitmap m_bitmap(m_width, m_height);
 
-	ZoomList zoomList(WIDTH, HEIGHT);
-	zoomList.add(Zoom(WIDTH / 2, HEIGHT / 2, 4.0 / WIDTH));	
-	zoomList.add(Zoom(295, HEIGHT - 202, 0.1));	
-	zoomList.add(Zoom(312, HEIGHT - 304, 0.1));	
+	ZoomList m_zoomList(m_width, m_height);
+	m_zoomList.add(Zoom(m_width / 2, m_height / 2, 4.0 / m_width));	
+	m_zoomList.add(Zoom(295, m_height - 202, 0.1));	
+	m_zoomList.add(Zoom(312, m_height - 304, 0.1));	
 	
-	std::unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
-	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
 
-	for(int y {0}; y < HEIGHT; y++) {
-		for(int x {0}; x < WIDTH; x++) {
-			std::pair<double, double> coords = zoomList.doZoom(x, y);
+	for(int y {0}; y < m_height; y++) {
+		for(int x {0}; x < m_width; x++) {
+			std::pair<double, double> coords = m_zoomList.doZoom(x, y);
 			int iterations = Mandelbrot::getIterations(coords.first, coords.second);
 
-			fractal[y * WIDTH + x] = iterations;
+			m_fractal[y * m_width + x] = iterations;
 
 			if(iterations != Mandelbrot::MAX_ITERATIONS) {
-				histogram[iterations]++;
+				m_histogram[iterations]++;
 			}	
 		}
 	}
 
 	int total {0};
 	for(size_t i {0}; i < Mandelbrot::MAX_ITERATIONS; i++) {
-		total += histogram[i];
+		total += m_histogram[i];
 	}
 
-	for(size_t y {0}; y < HEIGHT; y++) {
-		for(size_t x {0}; x < WIDTH; x++) {
+	for(size_t y {0}; y < m_height; y++) {
+		for(size_t x {0}; x < m_width; x++) {
 			uint8_t red = 0;
 			uint8_t green = 0; 
 			uint8_t blue = 0;
 
-			int iterations = fractal[y * WIDTH + x];
+			int iterations = m_fractal[y * m_width + x];
 
 			if(iterations != Mandelbrot::MAX_ITERATIONS) {
 			
 				double hue {0.0};
 				for(size_t i {0}; i <= iterations; i++) {
-					hue += ((double)histogram[i]) / total;
+					hue += ((double)m_histogram[i]) / total;
 				}
 
 				green = std::pow(255, hue); 
 			}
 
-			bitmap.setPixel(x, y, red, green, blue);
+			m_bitmap.setPixel(x, y, red, green, blue);
 		}
 	}
 
-	bitmap.write("test.bmp");
+	m_bitmap.write("test.bmp");
 
 	std::cout << "Finished." << std::endl;
 	return 0;
