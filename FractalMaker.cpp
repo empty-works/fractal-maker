@@ -10,9 +10,6 @@ int main() {
 	int const WIDTH = 800;
 	int const HEIGHT = 600;
 
-	std::unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
-	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
-
 	Bitmap bitmap(WIDTH, HEIGHT);
 
 	double min {999999};
@@ -20,6 +17,11 @@ int main() {
 
 	ZoomList zoomList(WIDTH, HEIGHT);
 	zoomList.add(Zoom(WIDTH / 2, HEIGHT / 2, 4.0 / WIDTH));	
+	zoomList.add(Zoom(295, HEIGHT - 202, 0.1));	
+	zoomList.add(Zoom(312, HEIGHT - 304, 0.1));	
+	
+	std::unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
+	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
 
 	for(int y {0}; y < HEIGHT; y++) {
 		for(int x {0}; x < WIDTH; x++) {
