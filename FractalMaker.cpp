@@ -4,6 +4,7 @@
 int main() {
 
 	int height = 600;
+
 	FractalCreator fractalCreator(800, 600);
 
 	fractalCreator.addZoom(Zoom(295, height - 202, 0.1));
