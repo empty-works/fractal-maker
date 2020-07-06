@@ -20,16 +20,14 @@ private:
 	Bitmap m_bitmap;
 	ZoomList m_zoomList;
         int m_total {0};
-public:
-	FractalCreator(int width, int height);
-	virtual ~FractalCreator();
-private:
 	void calculateIteration();
 	void calculateTotalIterations();
 	void drawFractal();
 	void addZoom(const Zoom & zoom);
 	void writeBitmap(std::string name);
 public:
+	FractalCreator(int width, int height);
+	virtual ~FractalCreator();
 	void run(std::string name);
 };
 
