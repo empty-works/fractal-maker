@@ -23,12 +23,14 @@ private:
 public:
 	FractalCreator(int width, int height);
 	virtual ~FractalCreator();
-
+private:
 	void calculateIteration();
 	void calculateTotalIterations();
 	void drawFractal();
 	void addZoom(const Zoom & zoom);
 	void writeBitmap(std::string name);
+public:
+	void run(std::string name);
 };
 
 #endif

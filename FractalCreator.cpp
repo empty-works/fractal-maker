@@ -1,5 +1,15 @@
 #include "FractalCreator.h"
 
+void FractalCreator::run(std::string name) {
+	
+	addZoom(Zoom(295, m_height - 202, 0.1));
+	addZoom(Zoom(312, m_height - 304, 0.1));
+	calculateIteration();
+	calculateTotalIterations();
+	drawFractal();
+	writeBitmap(name);
+}
+
 FractalCreator::FractalCreator(int width, int height): m_width(width), m_height(height),
  m_histogram(new int[Mandelbrot::MAX_ITERATIONS] {0}), 
  m_fractal(new int[m_width * m_height]{0}), 
@@ -68,3 +78,4 @@ void FractalCreator::addZoom(const Zoom & zoom) {
 void FractalCreator::writeBitmap(std::string name) {
 	m_bitmap.write(name);
 }
+
