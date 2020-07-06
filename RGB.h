@@ -1,9 +1,13 @@
 #ifndef RGB_H_
 #define RGB_H_
 
-class RGB {
+struct RGB {
+private:
+	double r;
+	double g;
+	double b;
 public:
-	RGB();
+	RGB(double r, double g, double b);
 	virtual ~RGB();
 };
 
