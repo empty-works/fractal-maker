@@ -10,6 +10,7 @@
 #include "Mandelbrot.h"
 #include "Bitmap.h"
 #include "ZoomList.h"
+#include "RGB.h"
 
 class FractalCreator {
 private:

@@ -48,6 +48,10 @@ void FractalCreator::calculateTotalIterations() {
 
 void FractalCreator::drawFractal() {
 
+	RGB startColor(0, 0, 0);
+	RGB endColor(0, 255, 0);
+	RGB colorDiff = endColor - startColor;
+
 	for(size_t y {0}; y < m_height; y++) {
 		for(size_t x {0}; x < m_width; x++) {
 			uint8_t red = 0;
@@ -63,7 +67,10 @@ void FractalCreator::drawFractal() {
 					hue += ((double)m_histogram[i]) / m_total;
 				}
 
-				green = std::pow(255, hue); 
+				// Color mapping
+				red = startColor.r + colorDiff.r *hue;
+				green = startColor.g + colorDiff.g *hue;
+				blue = startColor.b + colorDiff.b *hue;
 			}
 
 			m_bitmap.setPixel(x, y, red, green, blue);
