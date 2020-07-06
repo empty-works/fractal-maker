@@ -2,13 +2,14 @@
 #define RGB_H_
 
 struct RGB {
-private:
+
 	double r;
 	double g;
 	double b;
-public:
+
 	RGB(double r, double g, double b);
-	virtual ~RGB();
 };
+
+RGB operator-(const RGB &first, const RGB &second);
 
 #endif

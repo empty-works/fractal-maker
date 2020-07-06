@@ -1,7 +1,13 @@
 #include <iostream>
 #include "FractalCreator.h"
+#include "RGB.h"
 
 int main() {
+
+	RGB rgb1(4, 5, 6);
+	RGB rgb2(1, 2, 3);
+	RGB rgb3 = rgb1 - rgb2;
+	std::cout << rgb3.r << ", " << rgb3.g << ", " << rgb3.b << std::endl;
 
 	int height = 600;
 
