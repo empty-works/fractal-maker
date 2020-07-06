@@ -24,12 +24,12 @@ private:
 	void calculateIteration();
 	void calculateTotalIterations();
 	void drawFractal();
-	void addZoom(const Zoom & zoom);
 	void writeBitmap(std::string name);
 public:
 	FractalCreator(int width, int height);
 	virtual ~FractalCreator();
 	void run(std::string name);
+	void addZoom(const Zoom & zoom);
 };
 
 #endif
