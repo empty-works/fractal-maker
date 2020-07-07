@@ -21,6 +21,20 @@ void FractalCreator::addRange(double rangeEnd, const RGB &rgb) {
 
 }
 
+int FractalCreator::getRange(int iterations) const {
+	int range {0};
+	for(int i {1}; i < m_ranges.size(); i++) {
+		range = i;
+		if(m_ranges[i] > iterations) {
+			break;
+		}
+	}
+	range--;
+	assert(range > -1);
+	assert(range < m_ranges.size());
+	return range;
+}
+
 void FractalCreator::addZoom(const Zoom & zoom) {
 	m_zoomList.add(zoom);
 }
@@ -64,10 +78,6 @@ void FractalCreator::calculateRangeTotals() {
 			rangeIndex++;
 		}
 		m_rangeTotals[rangeIndex] += pixels;
-	}
-
-	for(int value : m_rangeTotals) {
-		std::cout << "Range total:" << value << std::endl;
 	}
 }
 

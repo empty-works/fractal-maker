@@ -34,6 +34,7 @@ private:
 	void calculateRangeTotals();
 	void drawFractal();
 	void writeBitmap(std::string name);
+	int getRange(int iterations) const;
 public:
 	FractalCreator(int width, int height);
 	void addRange(double rangeEnd, const RGB &rgb);
