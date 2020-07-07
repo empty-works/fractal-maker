@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdint>
 #include <math.h>
+#include <vector>
 #include <memory>
 #include <string>
 #include "Zoom.h"
@@ -21,12 +22,16 @@ private:
 	Bitmap m_bitmap;
 	ZoomList m_zoomList;
         int m_total {0};
+	std::vector<double> m_ranges;	
+	std::vector<RGB> m_colors;
+	
 	void calculateIteration();
 	void calculateTotalIterations();
 	void drawFractal();
 	void writeBitmap(std::string name);
 public:
 	FractalCreator(int width, int height);
+	void addRange(double rangeEnd, const RGB &rgb);
 	virtual ~FractalCreator();
 	void run(std::string name);
 	void addZoom(const Zoom & zoom);

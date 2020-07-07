@@ -47,7 +47,7 @@ void FractalCreator::calculateTotalIterations() {
 void FractalCreator::drawFractal() {
 
 	RGB startColor(0, 0, 0);
-	RGB endColor(0, 255, 0);
+	RGB endColor(0, 0, 255);
 	RGB colorDiff = endColor - startColor;
 
 	for(size_t y {0}; y < m_height; y++) {
