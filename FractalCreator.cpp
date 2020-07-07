@@ -11,6 +11,11 @@ void FractalCreator::run(std::string name) {
 void FractalCreator::addRange(double rangeEnd, const RGB &rgb) {
 	m_ranges.push_back(rangeEnd * Mandelbrot::MAX_ITERATIONS);
 	m_colors.push_back(rgb);
+
+	if(m_bGotFirstRange) {
+		m_rangeTotals.push_back(0);
+	}
+	m_bGotFirstRange = true;
 }
 
 void FractalCreator::addZoom(const Zoom & zoom) {

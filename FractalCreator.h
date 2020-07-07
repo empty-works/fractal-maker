@@ -25,6 +25,9 @@ private:
 
 	std::vector<int> m_ranges;	
 	std::vector<RGB> m_colors;
+	std::vector<int> m_range_totals;
+
+	bool m_bGotFirstRange {false};
 	
 	void calculateIteration();
 	void calculateTotalIterations();
