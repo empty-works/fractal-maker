@@ -8,6 +8,15 @@ void FractalCreator::run(std::string name) {
 	writeBitmap(name);
 }
 
+void FractalCreator::addRange(double rangeEnd, const RGB &rgb) {
+	m_ranges.push_back(rangeEnd);
+	m_colors.push_back(rgb);
+}
+
+void FractalCreator::addZoom(const Zoom & zoom) {
+	m_zoomList.add(zoom);
+}
+
 FractalCreator::FractalCreator(int width, int height): m_width(width), m_height(height),
  m_histogram(new int[Mandelbrot::MAX_ITERATIONS] {0}), 
  m_fractal(new int[m_width * m_height]{0}), 
@@ -74,10 +83,6 @@ void FractalCreator::drawFractal() {
 			m_bitmap.setPixel(x, y, red, green, blue);
 		}
 	}
-}
-
-void FractalCreator::addZoom(const Zoom & zoom) {
-	m_zoomList.add(zoom);
 }
 
 void FractalCreator::writeBitmap(std::string name) {
