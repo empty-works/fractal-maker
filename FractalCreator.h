@@ -22,7 +22,8 @@ private:
 	Bitmap m_bitmap;
 	ZoomList m_zoomList;
         int m_total {0};
-	std::vector<double> m_ranges;	
+
+	std::vector<int> m_ranges;	
 	std::vector<RGB> m_colors;
 	
 	void calculateIteration();
