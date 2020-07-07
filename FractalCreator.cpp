@@ -1,5 +1,5 @@
 #include "FractalCreator.h"
-#include <iostream>
+#include "assert.h" 
 
 void FractalCreator::run(std::string name) {
 	
@@ -15,7 +15,7 @@ void FractalCreator::addRange(double rangeEnd, const RGB &rgb) {
 	m_colors.push_back(rgb);
 
 	if(m_bGotFirstRange) {
-		m_rangeTotals.push_back(0);
+		m_range_totals.push_back(0);
 	}
 	m_bGotFirstRange = true;
 
@@ -30,6 +30,7 @@ int FractalCreator::getRange(int iterations) const {
 		}
 	}
 	range--;
+	// Range check
 	assert(range > -1);
 	assert(range < m_ranges.size());
 	return range;
@@ -77,7 +78,7 @@ void FractalCreator::calculateRangeTotals() {
 		if(i >= m_ranges[rangeIndex + 1]) {
 			rangeIndex++;
 		}
-		m_rangeTotals[rangeIndex] += pixels;
+		m_range_totals[rangeIndex] += pixels;
 	}
 }
 
@@ -96,23 +97,33 @@ void FractalCreator::drawFractal() {
 
 	for(size_t y {0}; y < m_height; y++) {
 		for(size_t x {0}; x < m_width; x++) {
+
+			int iterations = m_fractal[y * m_width + x];
+
+			int range = getRange(iterations);
+			int rangeTotal = m_range_totals[range];
+			int rangeStart = m_ranges[range];
+
+			RGB& startColor = m_colors[range];
+			RGB& endColor = m_colors[range + 1];
+			RGB colorDiff = endColor - startColor;
+
 			uint8_t red = 0;
 			uint8_t green = 0; 
 			uint8_t blue = 0;
 
-			int iterations = m_fractal[y * m_width + x];
 
 			if(iterations != Mandelbrot::MAX_ITERATIONS) {
 			
-				double hue {0.0};
-				for(size_t i {0}; i <= iterations; i++) {
-					hue += ((double)m_histogram[i]) / m_total;
+				int totalPixels {0};
+				for(size_t i {rangeStart}; i <= iterations; i++) {
+					totalPixels += m_histogram[i];
 				}
 
 				// Color mapping
-				red = startColor.r + colorDiff.r *hue;
-				green = startColor.g + colorDiff.g *hue;
-				blue = startColor.b + colorDiff.b *hue;
+				red = startColor.r + colorDiff.r * (double)totalPixels/rangeTotal;
+				green = startColor.g + colorDiff.g * (double)totalPixels/rangeTotal;
+				blue = startColor.b + colorDiff.b * (double)totalPixels/rangeTotal;
 			}
 
 			m_bitmap.setPixel(x, y, red, green, blue);
