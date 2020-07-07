@@ -31,6 +31,7 @@ private:
 	
 	void calculateIteration();
 	void calculateTotalIterations();
+	void calculateRangeTotals();
 	void drawFractal();
 	void writeBitmap(std::string name);
 public:

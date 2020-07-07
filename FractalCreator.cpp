@@ -4,6 +4,7 @@ void FractalCreator::run(std::string name) {
 	
 	calculateIteration();
 	calculateTotalIterations();
+	calculateRangeTotals();
 	drawFractal();
 	writeBitmap(name);
 }
@@ -16,6 +17,7 @@ void FractalCreator::addRange(double rangeEnd, const RGB &rgb) {
 		m_rangeTotals.push_back(0);
 	}
 	m_bGotFirstRange = true;
+
 }
 
 void FractalCreator::addZoom(const Zoom & zoom) {
@@ -48,6 +50,13 @@ void FractalCreator::calculateIteration() {
 				m_histogram[iterations]++;
 			}	
 		}
+	}
+}
+
+void FractalCreator::calculateRangeTotals() {
+
+	for(int value : m_rangeTotals) {
+		std::cout << "Range total:" << value << std::endl;
 	}
 }
 
