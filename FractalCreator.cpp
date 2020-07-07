@@ -1,4 +1,5 @@
 #include "FractalCreator.h"
+#include <iostream>
 
 void FractalCreator::run(std::string name) {
 	
@@ -54,6 +55,16 @@ void FractalCreator::calculateIteration() {
 }
 
 void FractalCreator::calculateRangeTotals() {
+
+	int rangeIndex = 0;
+	
+	for(int i {0}; i < Mandelbrot::MAX_ITERATIONS; i++) {
+		int pixels = m_histogram[i];
+		if(i >= m_ranges[rangeIndex + 1]) {
+			rangeIndex++;
+		}
+		m_rangeTotals[rangeIndex] += pixels;
+	}
 
 	for(int value : m_rangeTotals) {
 		std::cout << "Range total:" << value << std::endl;
